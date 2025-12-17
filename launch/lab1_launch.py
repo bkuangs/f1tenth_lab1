@@ -1,0 +1,25 @@
+from launch import LaunchDescription
+from launch_ros.actions import Node
+
+def generate_launch_description():
+    talker_node = Node(
+        package="lab1_pkg",
+        executable='talker',
+        name='talker'
+    )
+
+    relay_node = Node(
+        package="lab1_pkg",
+        executable='relay',
+        name='relay',
+        parameters=[
+            {'v': 0.0},
+            {'d': 0.0}
+        ]
+    )
+
+    return LaunchDescription([
+            talker_node,
+            relay_node
+        ])
+
